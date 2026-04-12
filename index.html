@@ -1,1 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OKLOO - Oasis of Hope</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo">
+                <img src="" alt="OKLOO Logo" id="nav-logo" class="logo-img">
+                <span class="logo-text">OKLOO</span>
+            </a>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                <span class="hamburger"></span>
+            </button>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#programs" class="nav-link">Programs</a></li>
+                <li><a href="#gallery" class="nav-link">Gallery</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li><button class="btn btn-donate" id="donate-btn">Donate</button></li>
+            </ul>
+        </div>
+    </nav>
 
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-bg">
+            <div class="floating-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+                <div class="shape shape-4"></div>
+                <div class="shape shape-5"></div>
+            </div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-badge">Transforming Lives Since 2024</div>
+            <h1 class="hero-title">
+                <span class="title-line">OKLOO</span>
+                <span class="title-accent">Oasis of Hope</span>
+            </h1>
+            <p class="hero-subtitle">Transforming communities through work, talent development, healthy living, and the love of God.</p>
+            <div class="hero-cta">
+                <button class="btn btn-primary" id="hero-donate">Make a Donation</button>
+                <a href="#programs" class="btn btn-outline">Our Programs</a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number" id="stat-communities">0</span>
+                    <span class="stat-label">Communities Reached</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <span class="stat-number" id="stat-donors">0</span>
+                    <span class="stat-label">Generous Donors</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <span class="stat-number" id="stat-funds">KES 0</span>
+                    <span class="stat-label">Funds Raised</span>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>Scroll to explore</span>
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Who We Are</span>
+                <h2 class="section-title">About OKLOO</h2>
+            </div>
+            <div class="about-grid">
+                <div class="about-card mission-card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 16v-4M12 8h.01"/>
+                        </svg>
+                    </div>
+                    <h3>Our Mission</h3>
+                    <p>Transforming communities through work, talent development, healthy living, and the love of God.</p>
+                </div>
+                <div class="about-card vision-card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                            <circle cx="12" cy="12" r="3"/>
+                        </svg>
+                    </div>
+                    <h3>Our Vision</h3>
+                    <p>A future where communities are empowered through sustainable livelihoods and restored hope.</p>
+                </div>
+                <div class="about-card values-card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                    </div>
+                    <h3>Core Values</h3>
+                    <div class="values-list">
+                        <span class="value-tag">Compassion</span>
+                        <span class="value-tag">Stewardship</span>
+                        <span class="value-tag">Empowerment</span>
+                        <span class="value-tag">Integrity</span>
+                        <span class="value-tag">Hope</span>
+                    </div>
+                    <p class="values-note">Anchored in Faith</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section id="programs" class="programs">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">What We Do</span>
+                <h2 class="section-title">Our Programs</h2>
+                <p class="section-desc">Empowering communities through diverse initiatives that create lasting impact.</p>
+            </div>
+            <div class="programs-grid">
+                <div class="program-card" data-program="greening">
+                    <div class="program-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            <path d="M12 8v4M12 16h.01"/>
+                        </svg>
+                    </div>
+                    <h3>Greening Initiative</h3>
+                    <p>Environmental conservation through tree planting and sustainable land management.</p>
+                    <div class="program-link">
+                        <span>Learn More</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="program-card" data-program="widows">
+                    <div class="program-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+                        </svg>
+                    </div>
+                    <h3>Widows, Widowers & Young Women Empowerment</h3>
+                    <p>Supporting vulnerable groups with skills training and economic opportunities.</p>
+                    <div class="program-link">
+                        <span>Learn More</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="program-card" data-program="legal">
+                    <div class="program-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                            <path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>
+                        </svg>
+                    </div>
+                    <h3>Legal Aid</h3>
+                    <p>Providing free legal assistance and advocacy for those who cannot afford representation.</p>
+                    <div class="program-link">
+                        <span>Learn More</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="program-card" data-program="water">
+                    <div class="program-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
+                        </svg>
+                    </div>
+                    <h3>Water & Sanitation</h3>
+                    <p>Improving access to clean water and proper sanitation facilities in underserved areas.</p>
+                    <div class="program-link">
+                        <span>Learn More</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="program-card" data-program="school">
+                    <div class="program-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                            <path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"/>
+                        </svg>
+                    </div>
+                    <h3>School Outreach Ministry</h3>
+                    <p>Mentoring students and providing educational support across schools.</p>
+                    <div class="program-link">
+                        <span>Learn More</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="program-card" data-program="youth">
+                    <div class="program-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polygon points="10 8 16 12 10 16 10 8"/>
+                        </svg>
+                    </div>
+                    <h3>Youth & Teenage Mothers Empowerment</h3>
+                    <p>Creating pathways for young people and teenage mothers to build brighter futures.</p>
+                    <div class="program-link">
+                        <span>Learn More</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="program-card" data-program="talent">
+                    <div class="program-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                        </svg>
+                    </div>
+                    <h3>Talent Mentorship</h3>
+                    <p>Nurturing gifts and talents through professional mentorship and development programs.</p>
+                    <div class="program-link">
+                        <span>Learn More</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Our Impact</span>
+                <h2 class="section-title">Gallery</h2>
+                <p class="section-desc">Moments that define our journey of transformation.</p>
+            </div>
+            <div class="gallery-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="image">Photos</button>
+                <button class="filter-btn" data-filter="video">Videos</button>
+            </div>
+            <div class="gallery-grid" id="gallery-grid">
+                <!-- Gallery items will be loaded dynamically -->
+                <div class="gallery-loading">
+                    <div class="loader"></div>
+                    <span>Loading gallery...</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <span class="section-tag">Get in Touch</span>
+                    <h2 class="section-title">Contact Us</h2>
+                    <p class="contact-desc">We'd love to hear from you. Reach out to learn more about our work or how you can get involved.</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                    <polyline points="22,6 12,13 2,6"/>
+                                </svg>
+                            </div>
+                            <div class="contact-text">
+                                <span class="contact-label">Email Us</span>
+                                <a href="mailto:Okloooasisofhope@gmail.com">Okloooasisofhope@gmail.com</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                                </svg>
+                            </div>
+                            <div class="contact-text">
+                                <span class="contact-label">Call Us</span>
+                                <a href="tel:+254728230983">0728230983</a>
+                                <a href="tel:+254711992767">0711992767</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form-wrapper">
+                    <form id="contact-form" class="contact-form">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" name="name" required placeholder="John Doe">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required placeholder="john@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required placeholder="How can we help?">
+                        </div>
+                        <div id="message-form" class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="4" required placeholder="Your message..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="" alt="OKLOO Logo" id="footer-logo" class="footer-logo-img">
+                    <h3>OKLOO - Oasis of Hope</h3>
+                    <p>Transforming communities through work, talent development, healthy living, and the love of God.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#programs">Programs</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Info</h4>
+                    <p>Okloooasisofhope@gmail.com</p>
+                    <p>0728230983 / 0711992767</p>
+                </div>
+            </div><div class="footer-bottom">
+    <p>&copy; <span id="current-year"></span> OKLOO Oasis of Hope. All rights reserved.</p>
+    <!-- Add this small admin link -->
+    <a href="admin.html" style="font-size: 0.75rem; color: #4b5563; margin-left: 10px;">Admin</a>
+</div>
+        </div>
+    </footer>
+
+    <!-- Donation Modal -->
+    <div class="modal" id="donation-modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <button class="modal-close" id="modal-close">&times;</button>
+            <div class="modal-header">
+                <h2>Make a Donation</h2>
+                <p>Your generosity transforms lives</p>
+            </div>
+            <form id="donation-form" class="donation-form">
+                <div class="donation-amounts">
+                    <label class="amount-option">
+                        <input type="radio" name="amount" value="100">
+                        <span class="amount-btn">KES 100</span>
+                    </label>
+                    <label class="amount-option">
+                        <input type="radio" name="amount" value="500">
+                        <span class="amount-btn">KES 500</span>
+                    </label>
+                    <label class="amount-option">
+                        <input type="radio" name="amount" value="1000">
+                        <span class="amount-btn">KES 1,000</span>
+                    </label>
+                    <label class="amount-option">
+                        <input type="radio" name="amount" value="5000">
+                        <span class="amount-btn">KES 5,000</span>
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label for="custom-amount">Or Enter Custom Amount (KES)</label>
+                    <input type="number" id="custom-amount" name="custom-amount" min="10" placeholder="Enter amount">
+                </div>
+                <div class="form-group">
+                    <label for="phone">M-Pesa Phone Number</label>
+                    <input type="tel" id="phone" name="phone" required placeholder="07XXXXXXXX" pattern="0[0-9]{9}">
+                </div>
+                <div class="form-group">
+                    <label for="donor-name">Your Name (Optional)</label>
+                    <input type="text" id="donor-name" name="donor-name" placeholder="John Doe">
+                </div>
+                <button type="submit" class="btn btn-primary btn-full" id="donate-submit">
+                    <span class="btn-text">Donate via M-Pesa</span>
+                    <span class="btn-loader hidden"></span>
+                </button>
+                <p class="donation-note">You will receive an M-Pesa prompt on your phone to complete the payment.</p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Payment Status Modal -->
+    <div class="modal" id="status-modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content status-content">
+            <div class="status-icon" id="status-icon"></div>
+            <h2 id="status-title">Processing Payment</h2>
+            <p id="status-message">Please wait while we process your donation...</p>
+            <button class="btn btn-primary hidden" id="status-close">Close</button>
+        </div>
+    </div>
+
+    <!-- Gallery Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close">&times;</button>
+        <button class="lightbox-prev">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M15 18l-6-6 6-6"/>
+            </svg>
+        </button>
+        <button class="lightbox-next">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 18l6-6-6-6"/>
+            </svg>
+        </button>
+        <div class="lightbox-content" id="lightbox-content"></div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script src="js/firebase-config.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
