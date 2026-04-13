@@ -125,13 +125,7 @@ function getErrorMessage(code) {
     };
     return messages[code] || 'Login failed. Please try again.';
 }
-firebase.auth().signInWithEmailAndPassword(email, password)
-  .then(() => {
-    alert("Login success");
-  })
-  .catch((error) => {
-    alert(error.message);
-  });
+
 // =====================================================
 // NAVIGATION
 // =====================================================
