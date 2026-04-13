@@ -2,12 +2,13 @@
 // Replace these values with your actual Firebase project credentials
 
 const firebaseConfig = {
-    apiKey: "YOUR_FIREBASE_API_KEY",
-    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_PROJECT_ID.appspot.com",
-    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-    appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyCrLVlk8jaNMm2gyx_pDMC1dzwvy9RZsRg",
+  authDomain: "okloo-oasis-of-hope-725d9.firebaseapp.com",
+  databaseURL: "https://okloo-oasis-of-hope-725d9-default-rtdb.firebaseio.com",
+  projectId: "okloo-oasis-of-hope-725d9",
+  storageBucket: "okloo-oasis-of-hope-725d9.firebasestorage.app",
+  messagingSenderId: "900820306948",
+  appId: "1:900820306948:web:841d7e78b5020029ec3951"
 };
 
 // Initialize Firebase
