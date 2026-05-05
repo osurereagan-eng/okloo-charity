@@ -5,19 +5,17 @@
 
 // Configuration
 const CONFIG = {
-    API_BASE: window.location.origin 
+    API_BASE: window.location.origin, 
     CLOUDINARY_CLOUD: 'YOUR_CLOUDINARY_CLOUD_NAME'
 };
 
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "./firebase.js";
-
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-    document.body.style.display = "block"; // 🔥 SHOW PAGE
-  } else {
-    window.location.href = "admin.html";
-  }
+firebase.auth().onAuthStateChanged(user => {
+    if (user) {
+        showDashboard();
+        loadDashboardData();
+    } else {
+        showLoginScreen();
+    }
 });
 
 // DOM Elements
