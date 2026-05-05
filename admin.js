@@ -5,22 +5,20 @@
 
 // Configuration
 const CONFIG = {
-    API_BASE: window.location.origin + '/api',
+    API_BASE: window.location.origin 
     CLOUDINARY_CLOUD: 'YOUR_CLOUDINARY_CLOUD_NAME'
 };
 
-// State
-const state = {
-    user: null,
-    currentSection: 'overview',
-    media: [],
-    donations: [],
-    messages: [],
-    stats: { communities: 0, donors: 0, funds: 0 },
-    uploadQueue: [],
-    deleteTarget: null,
-    charts: { donations: null, donors: null }
-};
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "./firebase.js";
+
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    document.body.style.display = "block"; // 🔥 SHOW PAGE
+  } else {
+    window.location.href = "admin.html";
+  }
+});
 
 // DOM Elements
 const elements = {
