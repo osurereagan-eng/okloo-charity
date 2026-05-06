@@ -3,12 +3,23 @@
  * Administrative Interface JavaScript
  */
 
+};
 // Configuration
 const CONFIG = {
     API_BASE: window.location.origin, 
     CLOUDINARY_CLOUD: 'YOUR_CLOUDINARY_CLOUD_NAME'
 };
-
+const state = {
+    user: null,
+    stats: {},
+    media: [],
+    donations: [],
+    messages: [],
+    uploadQueue: [],
+    deleteTarget: null,
+    currentSection: 'overview',
+    charts: {}
+};
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
         showDashboard();
