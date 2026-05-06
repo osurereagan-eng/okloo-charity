@@ -9,8 +9,6 @@ const API_BASE = "https://your-backend.com";
 
 // 🔥 Firebase
 const auth = firebase.auth();
-const db = firebase.firestore();
-
 
 // ================= CLOUDINARY UPLOAD =================
 async function uploadToCloudinary(file, onProgress) {
