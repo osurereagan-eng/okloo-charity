@@ -1,238 +1,182 @@
-// =====================================================
-// CONFIGURATION
-// =====================================================
-const CONFIG = {
-    API_BASE: window.location.origin,
-    CLOUDINARY_CLOUD: 'YOUR_CLOUDINARY_CLOUD_NAME'
-};
-document.body.style.display = "block";
-// =====================================================
-// GLOBAL STATE
-// =====================================================
-const state = {
-    user: null,
-    stats: {},
-    media: [],
-    donations: [],
-    messages: [],
-    uploadQueue: [],
-    deleteTarget: null,
-    currentSection: 'overview',
-    charts: {}
-};
+// Initialize Firebase (from firebase-config.js already loaded)
+const auth = firebase.auth();
+const db = firebase.firestore();
 
-// =====================================================
-// DOM ELEMENTS
-// =====================================================
-const elements = {
-    loginScreen: document.getElementById('login-screen'),
-    dashboard: document.getElementById('admin-dashboard'),
-    loginForm: document.getElementById('login-form'),
-    loginError: document.getElementById('login-error'),
-    sidebarNav: document.querySelector('.sidebar-nav'),
-    logoutBtn: document.getElementById('logout-btn'),
-    toast: document.getElementById('toast')
-};
+// ===============================
+// LOGIN FUNCTION
+// ===============================
+const loginForm = document.getElementById("login-form");
+const loginScreen = document.getElementById("login-screen");
+const dashboard = document.getElementById("admin-dashboard");
+const loginError = document.getElementById("login-error");
 
-// =====================================================
-// INIT
-// =====================================================
-document.addEventListener('DOMContentLoaded', () => {
-    console.log("Admin JS Loaded ✅");
+loginForm.addEventListener("submit", (e) => {
+    e.preventDefault();
 
-    initAuth();
-    initNavigation();
+    const email = document.getElementById("login-email").value;
+    const password = document.getElementById("login-password").value;
+
+    auth.signInWithEmailAndPassword(email, password)
+        .then(() => {
+            loginScreen.classList.add("hidden");
+            dashboard.classList.remove("hidden");
+        })
+        .catch((error) => {
+            loginError.textContent = error.message;
+            loginError.classList.remove("hidden");
+        });
 });
 
-// =====================================================
-// AUTH
-// =====================================================
-function initAuth() {
-    firebase.auth().onAuthStateChanged(user => {
-        console.log("Auth state:", user);
-
-        if (user) {
-            state.user = user;
-            showDashboard();
-            loadDashboardData();
-        } else {
-            state.user = null;
-            showLoginScreen();
-        }
-    });
-
-    // LOGIN
-    elements.loginForm?.addEventListener('submit', async (e) => {
-        e.preventDefault();
-
-        const email = document.getElementById('login-email')?.value;
-        const password = document.getElementById('login-password')?.value;
-
-        if (!email || !password) {
-            showLoginError("Fill all fields");
-            return;
-        }
-
-        try {
-            console.log("Logging in...");
-            await firebase.auth().signInWithEmailAndPassword(email, password);
-        } catch (err) {
-            console.error(err);
-            showLoginError(err.message);
-        }
-    });
-
-    // LOGOUT
-    elements.logoutBtn?.addEventListener('click', async () => {
-        try {
-            await firebase.auth().signOut();
-        } catch (err) {
-            console.error(err);
-            showToast("Logout failed", "error");
-        }
-    });
-}
-function showSection(id) {
-    document.querySelectorAll('.admin-section').forEach(sec => {
-        sec.classList.remove('active');
-    });
-
-    const target = document.getElementById(id);
-    if (target) {
-        target.classList.add('active');
+// ===============================
+// AUTH STATE CHECK
+// ===============================
+auth.onAuthStateChanged(user => {
+    if (user) {
+        loginScreen.classList.add("hidden");
+        dashboard.classList.remove("hidden");
+        loadDashboardData();
     } else {
-        console.error("Section not found:", id);
+        loginScreen.classList.remove("hidden");
+        dashboard.classList.add("hidden");
     }
-}
-// =====================================================
-// UI CONTROL
-// =====================================================
-function showLoginScreen() {
-    elements.loginScreen?.classList.remove('hidden');
-    elements.dashboard?.classList.add('hidden');
-}
+});
 
-function showDashboard() {
-    elements.loginScreen?.classList.add('hidden');
-    elements.dashboard?.classList.remove('hidden');
-}
+// ===============================
+// LOGOUT
+// ===============================
+document.getElementById("logout-btn").addEventListener("click", () => {
+    auth.signOut();
+});
 
-function showLoginError(msg) {
-    if (elements.loginError) {
-        elements.loginError.textContent = msg;
-        elements.loginError.classList.remove('hidden');
-    }
+// ===============================
+// LOAD DASHBOARD DATA
+// ===============================
+function loadDashboardData() {
+    loadStats();
+    loadDonations();
+    loadMessages();
 }
 
-// =====================================================
-// NAVIGATION
-// =====================================================
-function initNavigation() {
-    elements.sidebarNav?.addEventListener('click', (e) => {
-        const item = e.target.closest('.nav-item');
-        if (!item) return;
+// ===============================
+// LOAD STATS
+// ===============================
+function loadStats() {
+    db.collection("stats").doc("main").get().then(doc => {
+        if (doc.exists) {
+            const data = doc.data();
 
-        const section = item.dataset.section;
-        if (!section) return;
+            document.getElementById("admin-communities").textContent = data.communities || 0;
+            document.getElementById("admin-donors").textContent = data.donors || 0;
+            document.getElementById("admin-funds").textContent = "KES " + (data.funds || 0);
 
-        switchSection(section);
-    });
-}
-
-function switchSection(sectionId) {
-    state.currentSection = sectionId;
-
-    document.querySelectorAll('.nav-item').forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.section === sectionId);
-    });
-
-    document.querySelectorAll('.admin-section').forEach(sec => {
-        sec.classList.toggle('active', sec.id === `section-${sectionId}`);
-    });
-}
-
-// =====================================================
-// FIRESTORE LOAD
-// =====================================================
-async function loadDashboardData() {
-    if (!window.db) {
-        console.error("Firestore (db) not initialized");
-        return;
-    }
-
-    try {
-        console.log("Loading dashboard data...");
-
-        // STATS
-        const statsDoc = await db.collection('config').doc('stats').get();
-        if (statsDoc.exists) {
-            state.stats = statsDoc.data();
-            updateStatsDisplay();
+            // Fill settings form
+            document.getElementById("edit-communities").value = data.communities || 0;
+            document.getElementById("edit-donors").value = data.donors || 0;
+            document.getElementById("edit-funds").value = data.funds || 0;
         }
-
-        // DONATIONS
-        const donations = await db.collection('donations').get();
-        state.donations = donations.docs.map(d => ({ id: d.id, ...d.data() }));
-        renderDonations();
-
-        console.log("Data loaded ✅");
-
-    } catch (err) {
-        console.error("Load error:", err);
-        showToast("Failed to load data", "error");
-    }
+    });
 }
 
-// =====================================================
-// UPDATE UI
-// =====================================================
-function updateStatsDisplay() {
-    document.getElementById('admin-communities').textContent =
-        state.stats.communities || 0;
+// ===============================
+// UPDATE COUNTERS
+// ===============================
+document.getElementById("counters-form").addEventListener("submit", (e) => {
+    e.preventDefault();
 
-    document.getElementById('admin-donors').textContent =
-        state.stats.donors || 0;
+    const communities = Number(document.getElementById("edit-communities").value);
+    const donors = Number(document.getElementById("edit-donors").value);
+    const funds = Number(document.getElementById("edit-funds").value);
 
-    document.getElementById('admin-funds').textContent =
-        "KES " + (state.stats.funds || 0);
+    db.collection("stats").doc("main").set({
+        communities,
+        donors,
+        funds
+    }).then(() => {
+        alert("Stats updated!");
+        loadStats();
+    });
+});
+
+// ===============================
+// LOAD DONATIONS
+// ===============================
+function loadDonations() {
+    const table = document.getElementById("all-donations-body");
+    table.innerHTML = "";
+
+    db.collection("donations").orderBy("date", "desc").get()
+        .then(snapshot => {
+
+            if (snapshot.empty) {
+                table.innerHTML = `<tr><td colspan="6">No donations yet</td></tr>`;
+                return;
+            }
+
+            snapshot.forEach(doc => {
+                const d = doc.data();
+
+                const row = `
+                    <tr>
+                        <td>${new Date(d.date).toLocaleDateString()}</td>
+                        <td>${d.transactionId || "-"}</td>
+                        <td>${d.name || "Anonymous"}</td>
+                        <td>${d.phone || "-"}</td>
+                        <td>KES ${d.amount}</td>
+                        <td>${d.status || "completed"}</td>
+                    </tr>
+                `;
+                table.innerHTML += row;
+            });
+        });
 }
 
-// =====================================================
-// DONATIONS
-// =====================================================
-function renderDonations() {
-    const tbody = document.getElementById('all-donations-body');
-    if (!tbody) return;
+// ===============================
+// LOAD MESSAGES
+// ===============================
+function loadMessages() {
+    const list = document.getElementById("messages-list");
+    list.innerHTML = "";
 
-    if (state.donations.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="6">No donations</td></tr>`;
-        return;
-    }
+    db.collection("messages").orderBy("date", "desc").get()
+        .then(snapshot => {
 
-    tbody.innerHTML = state.donations.map(d => `
-        <tr>
-            <td>${new Date(d.createdAt).toLocaleDateString()}</td>
-            <td>${d.mpesaReceipt || '-'}</td>
-            <td>${d.donorName || 'Anonymous'}</td>
-            <td>${d.phone || '-'}</td>
-            <td>KES ${d.amount || 0}</td>
-            <td>${d.status || 'pending'}</td>
-        </tr>
-    `).join('');
+            if (snapshot.empty) {
+                list.innerHTML = "<p>No messages yet</p>";
+                return;
+            }
+
+            snapshot.forEach(doc => {
+                const m = doc.data();
+
+                const item = document.createElement("div");
+                item.classList.add("message-item");
+
+                item.innerHTML = `
+                    <h4>${m.name}</h4>
+                    <p>${m.email}</p>
+                    <p>${m.message}</p>
+                    <small>${new Date(m.date).toLocaleString()}</small>
+                `;
+
+                list.appendChild(item);
+            });
+        });
 }
 
-// =====================================================
-// TOAST
-// =====================================================
-function showToast(message, type = "success") {
-    if (!elements.toast) return;
+// ===============================
+// SIDEBAR NAVIGATION
+// ===============================
+document.querySelectorAll(".nav-item").forEach(btn => {
+    btn.addEventListener("click", () => {
+        document.querySelectorAll(".nav-item").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
 
-    elements.toast.className = `toast ${type}`;
-    elements.toast.querySelector('.toast-message').textContent = message;
+        const section = btn.getAttribute("data-section");
 
-    elements.toast.classList.add('show');
+        document.querySelectorAll(".admin-section").forEach(sec => {
+            sec.classList.remove("active");
+        });
 
-    setTimeout(() => {
-        elements.toast.classList.remove('show');
-    }, 3000);
-}
+        document.getElementById("section-" + section).classList.add("active");
+    });
+});
