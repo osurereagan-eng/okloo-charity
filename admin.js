@@ -5,7 +5,7 @@ const CONFIG = {
     API_BASE: window.location.origin,
     CLOUDINARY_CLOUD: 'YOUR_CLOUDINARY_CLOUD_NAME'
 };
-
+document.body.style.display = "block";
 // =====================================================
 // GLOBAL STATE
 // =====================================================
