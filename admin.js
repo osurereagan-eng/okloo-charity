@@ -92,7 +92,18 @@ function initAuth() {
         }
     });
 }
+function showSection(id) {
+    document.querySelectorAll('.admin-section').forEach(sec => {
+        sec.classList.remove('active');
+    });
 
+    const target = document.getElementById(id);
+    if (target) {
+        target.classList.add('active');
+    } else {
+        console.error("Section not found:", id);
+    }
+}
 // =====================================================
 // UI CONTROL
 // =====================================================
