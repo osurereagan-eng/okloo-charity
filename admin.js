@@ -1,6 +1,5 @@
 // Initialize Firebase (from firebase-config.js already loaded)
 const auth = firebase.auth();
-const db = firebase.firestore();
 
 // ===============================
 // LOGIN FUNCTION
